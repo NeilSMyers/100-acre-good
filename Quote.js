@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ImageBackground,
-  TouchableOpacity
-} from "react-native";
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 const Quote = props => {
   return (
@@ -21,15 +15,13 @@ const Quote = props => {
       }
     >
       <View style={styles.container}>
-        <ImageBackground
-          style={{ height: "100%", width: "100%" }}
-          source={{ uri: "https://source.unsplash.com/random" }}
-        >
-          <View style={styles.quoteWrapper}>
-            <Text style={styles.quote}>"{props.quote}"</Text>
-            <Text style={[styles.author, styles.quote]}>-{props.author}</Text>
-          </View>
-        </ImageBackground>
+        <View style={styles.imageWrapper}>
+          <Image style={styles.image} source={props.image} />
+        </View>
+        <View style={styles.quoteWrapper}>
+          <Text style={styles.author}>{props.author}</Text>
+          <Text style={styles.quote}>{props.quote}</Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -37,20 +29,32 @@ const Quote = props => {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: -1,
-    marginVertical: 5,
-    overflow: "hidden",
-    flex: 1
+    flexDirection: "row",
+    borderTopWidth: 1,
+    borderTopColor: "#e1e1e1",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: 12
   },
   author: {
-    textAlign: "right"
+    fontSize: 16,
+    fontWeight: "bold",
+    paddingBottom: 10
   },
   quoteWrapper: {
-    padding: 10,
-    backgroundColor: "rgba(0, 0, 0, 0.5)"
+    width: "78%"
   },
-  quote: {
-    color: "white"
+  quote: {},
+  imageWrapper: {
+    height: 60,
+    width: 60,
+    borderRadius: 50,
+    overflow: "hidden",
+    marginRight: 12
+  },
+  image: {
+    height: "100%",
+    width: "100%"
   }
 });
 

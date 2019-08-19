@@ -16,6 +16,7 @@ const App = props => {
             <Quote
               quote={item.quote}
               author={item.author}
+              image={item.image}
               navigation={props.navigation}
             />
           );
@@ -27,7 +28,6 @@ const App = props => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"

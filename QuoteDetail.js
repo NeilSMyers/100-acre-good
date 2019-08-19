@@ -1,12 +1,19 @@
 import React from "react";
 import { View, Text, StyleSheet, ImageBackground } from "react-native";
 
+import imageArray from "./imageArray";
+
 const QuoteDetail = props => {
+  const [randoImage, setRandoImage] = React.useState(null);
+
+  React.useEffect(() => {
+    setRandoImage(imageArray[Math.floor(Math.random() * imageArray.length)]);
+
+    return () => setRandoImage(null);
+  }, []);
+
   return (
-    <ImageBackground
-      style={styles.container}
-      source={{ uri: "https://source.unsplash.com/random" }}
-    >
+    <ImageBackground style={styles.container} source={randoImage}>
       <View style={styles.quoteWrapper}>
         <Text style={styles.text}>"{props.navigation.getParam("quote")}"</Text>
         <Text style={{ ...styles.text, alignSelf: "flex-end" }}>
@@ -22,7 +29,8 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignContent: "center",
-    height: "100%"
+    height: "100%",
+    width: "100%"
   },
   quoteWrapper: {
     justifyContent: "space-evenly",
