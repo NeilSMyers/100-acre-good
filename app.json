@@ -1,10 +1,14 @@
 {
   "expo": {
-    "name": "AdultMeds",
-    "slug": "adult-meds",
+    "name": "100AcreGood",
+    "slug": "100-acre-good",
     "privacy": "public",
     "sdkVersion": "34.0.0",
-    "platforms": ["ios", "android", "web"],
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -16,9 +20,12 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "description": "This app provides the best quotes from the beloved series \"Winnie the Pooh\". No matter what age, these words of wisdom will bring out the optimistic kid in all of us."
   }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const Quote = props => {
   return (
@@ -22,6 +23,12 @@ const Quote = props => {
           <Text style={styles.author}>{props.author}</Text>
           <Text style={styles.quote}>{props.quote}</Text>
         </View>
+        <Ionicons
+          style={styles.icon}
+          name="ios-arrow-forward"
+          size={23}
+          color="#7d7d7d"
+        />
       </View>
     </TouchableOpacity>
   );
@@ -30,8 +37,8 @@ const Quote = props => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    borderTopWidth: 1,
-    borderTopColor: "#e1e1e1",
+    borderBottomWidth: 1,
+    borderBottomColor: "#e1e1e1",
     alignItems: "center",
     justifyContent: "space-between",
     padding: 12
@@ -42,9 +49,12 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   quoteWrapper: {
-    width: "78%"
+    width: "77%"
   },
   quote: {},
+  icon: {
+    alignSelf: "flex-start"
+  },
   imageWrapper: {
     height: 60,
     width: 60,
