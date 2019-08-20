@@ -11,6 +11,7 @@ const App = props => {
       <FlatList
         keyExtractor={item => String(item.id)}
         data={data}
+        style={{ width: "100%" }}
         renderItem={({ item }) => {
           return (
             <Quote

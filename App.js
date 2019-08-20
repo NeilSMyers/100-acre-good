@@ -15,13 +15,19 @@ const AppNavigator = createStackNavigator({
   MainScreen: {
     screen: MainScreen,
     navigationOptions: {
-      headerTitle: "Quotes"
+      headerTitle: "Quotes",
+      headerStyle: {
+        backgroundColor: "#f5f5f5"
+      }
     }
   },
   QuoteDetail: {
     screen: QuoteDetail,
     navigationOptions: {
-      headerTitle: "Details"
+      headerTitle: "Details",
+      headerStyle: {
+        backgroundColor: "#f5f5f5"
+      }
     }
   }
 });
@@ -30,40 +36,58 @@ const FavoriteNavigator = createStackNavigator({
   Favorites: {
     screen: Favorites,
     navigationOptions: {
-      headerTitle: "Favorites"
+      headerTitle: "Favorites",
+      headerStyle: {
+        backgroundColor: "#f5f5f5"
+      }
+    }
+  },
+  QuoteDetail: {
+    screen: QuoteDetail,
+    navigationOptions: {
+      headerTitle: "Detail",
+      headerStyle: {
+        backgroundColor: "#f5f5f5"
+      }
     }
   }
 });
 
-const TabNavigator = createBottomTabNavigator({
-  All: {
-    screen: AppNavigator,
-    navigationOptions: {
-      tabBarIcon: tabInfo => (
-        <Ionicons
-          name={tabInfo.focused ? "ios-list-box" : "ios-list"}
-          size={28}
-        />
-      ),
-      tabBarOptions: {
-        activeTintColor: "black"
+const TabNavigator = createBottomTabNavigator(
+  {
+    All: {
+      screen: AppNavigator,
+      navigationOptions: {
+        tabBarIcon: tabInfo => (
+          <Ionicons
+            name={tabInfo.focused ? "ios-list-box" : "ios-list"}
+            size={28}
+          />
+        )
+      }
+    },
+    Favorites: {
+      screen: FavoriteNavigator,
+      navigationOptions: {
+        tabBarIcon: tabInfo => (
+          <Ionicons
+            name={tabInfo.focused ? "ios-heart" : "ios-heart-empty"}
+            size={28}
+          />
+        )
       }
     }
   },
-  Favorites: {
-    screen: FavoriteNavigator,
-    navigationOptions: {
-      tabBarIcon: tabInfo => (
-        <Ionicons
-          name={tabInfo.focused ? "ios-heart" : "ios-heart-empty"}
-          size={28}
-        />
-      ),
+  {
+    defaultNavigationOptions: {
       tabBarOptions: {
-        activeTintColor: "black"
+        activeTintColor: "black",
+        style: {
+          backgroundColor: "#f5f5f5"
+        }
       }
     }
   }
-});
+);
 
 export default createAppContainer(TabNavigator);

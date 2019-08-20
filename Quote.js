@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10
   },
   quoteWrapper: {
-    width: "77%"
+    width: "75%"
   },
   quote: {},
   icon: {
