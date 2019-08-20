@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, ImageBackground } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+  TouchableOpacity
+} from "react-native";
 
 import imageArray from "./imageArray";
 
@@ -8,18 +14,27 @@ const QuoteDetail = props => {
 
   React.useEffect(() => {
     setRandoImage(imageArray[Math.floor(Math.random() * imageArray.length)]);
-
     return () => setRandoImage(null);
   }, []);
 
   return (
     <ImageBackground style={styles.container} source={randoImage}>
-      <View style={styles.quoteWrapper}>
-        <Text style={styles.text}>"{props.navigation.getParam("quote")}"</Text>
-        <Text style={{ ...styles.text, alignSelf: "flex-end" }}>
-          -{props.navigation.getParam("author")}
-        </Text>
-      </View>
+      <TouchableOpacity
+        onPress={() =>
+          setRandoImage(
+            imageArray[Math.floor(Math.random() * imageArray.length)]
+          )
+        }
+      >
+        <View style={styles.quoteWrapper}>
+          <Text style={styles.text}>
+            "{props.navigation.getParam("quote")}"
+          </Text>
+          <Text style={{ ...styles.text, alignSelf: "flex-end" }}>
+            -{props.navigation.getParam("author")}
+          </Text>
+        </View>
+      </TouchableOpacity>
     </ImageBackground>
   );
 };
