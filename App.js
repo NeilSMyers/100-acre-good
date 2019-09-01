@@ -10,6 +10,7 @@ import { Ionicons } from "@expo/vector-icons";
 import MainScreen from "./MainScreen";
 import QuoteDetail from "./QuoteDetail";
 import Favorites from "./Favorites";
+import DropDownDemo from "./DropDownDemoScreen";
 
 const AppNavigator = createStackNavigator({
   MainScreen: {
@@ -53,6 +54,10 @@ const FavoriteNavigator = createStackNavigator({
   }
 });
 
+const DropDownDemoNavigator = createStackNavigator({
+  DropDownDemo
+});
+
 const TabNavigator = createBottomTabNavigator(
   {
     All: {
@@ -76,8 +81,10 @@ const TabNavigator = createBottomTabNavigator(
           />
         )
       }
-    }
+    },
+    DropDown: DropDownDemoNavigator
   },
+
   {
     defaultNavigationOptions: {
       tabBarOptions: {
