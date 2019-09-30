@@ -1,16 +1,16 @@
-import React from "react";
+import React from "react"
 
 import {
   createStackNavigator,
   createAppContainer,
   createBottomTabNavigator
-} from "react-navigation";
-import { Ionicons } from "@expo/vector-icons";
+} from "react-navigation"
+import { Ionicons } from "@expo/vector-icons"
 
-import MainScreen from "./MainScreen";
-import QuoteDetail from "./QuoteDetail";
-import Favorites from "./Favorites";
-import DropDownDemo from "./DropDownDemoScreen";
+import MainScreen from "./screens/MainScreen"
+import QuoteDetail from "./screens/QuoteDetail"
+import Favorites from "./screens/Favorites"
+import DropDownDemo from "./screens/DropDownDemoScreen"
 
 const AppNavigator = createStackNavigator({
   MainScreen: {
@@ -31,7 +31,7 @@ const AppNavigator = createStackNavigator({
       }
     }
   }
-});
+})
 
 const FavoriteNavigator = createStackNavigator({
   Favorites: {
@@ -52,11 +52,11 @@ const FavoriteNavigator = createStackNavigator({
       }
     }
   }
-});
+})
 
 const DropDownDemoNavigator = createStackNavigator({
   DropDownDemo
-});
+})
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -95,6 +95,6 @@ const TabNavigator = createBottomTabNavigator(
       }
     }
   }
-);
+)
 
-export default createAppContainer(TabNavigator);
+export default createAppContainer(TabNavigator)

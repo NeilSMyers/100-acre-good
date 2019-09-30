@@ -1,9 +1,9 @@
-import React from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import React from "react"
+import { View, StyleSheet, FlatList } from "react-native"
 
-import Quote from "./Quote";
+import Quote from "../components/Quote"
 
-import data from "./mockData";
+import data from "../mockData"
 
 const Favorites = props => {
   const renderFavorites = ({ item }) => {
@@ -14,8 +14,8 @@ const Favorites = props => {
         image={item.image}
         navigation={props.navigation}
       />
-    );
-  };
+    )
+  }
 
   return (
     <View style={styles.container}>
@@ -25,8 +25,8 @@ const Favorites = props => {
         renderItem={renderFavorites}
       />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flex: 1
   }
-});
+})
 
-export default Favorites;
+export default Favorites

@@ -1,21 +1,21 @@
-import React from "react";
+import React from "react"
 import {
   View,
   Text,
   StyleSheet,
   ImageBackground,
   TouchableOpacity
-} from "react-native";
+} from "react-native"
 
-import imageArray from "./imageArray";
+import imageArray from "../imageArray"
 
 const QuoteDetail = props => {
-  const [randoImage, setRandoImage] = React.useState(null);
+  const [randoImage, setRandoImage] = React.useState(null)
 
   React.useEffect(() => {
-    setRandoImage(imageArray[Math.floor(Math.random() * imageArray.length)]);
-    return () => setRandoImage(null);
-  }, []);
+    setRandoImage(imageArray[Math.floor(Math.random() * imageArray.length)])
+    return () => setRandoImage(null)
+  }, [])
 
   return (
     <ImageBackground style={styles.container} source={randoImage}>
@@ -36,8 +36,8 @@ const QuoteDetail = props => {
         </View>
       </TouchableOpacity>
     </ImageBackground>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
     padding: 5,
     fontSize: 27
   }
-});
+})
 
-export default QuoteDetail;
+export default QuoteDetail

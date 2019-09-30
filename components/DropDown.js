@@ -1,11 +1,11 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Modal } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from "react"
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from "react-native"
+import { Ionicons } from "@expo/vector-icons"
 
-import imageArray from "./imageArray";
+import imageArray from "../imageArray"
 
 const DropDown = props => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false)
 
   const renderOptions = () => {
     return imageArray.map(image => {
@@ -13,16 +13,16 @@ const DropDown = props => {
         <TouchableOpacity
           key={image}
           onPress={() => {
-            props.updateImage(image);
-            setIsOpen(false);
+            props.updateImage(image)
+            setIsOpen(false)
           }}
           style={styles.content}
         >
           <Text>{image}</Text>
         </TouchableOpacity>
-      );
-    });
-  };
+      )
+    })
+  }
 
   return (
     <TouchableOpacity onPress={() => setIsOpen(true)}>
@@ -34,8 +34,8 @@ const DropDown = props => {
         <View style={styles.modal}>{renderOptions()}</View>
       </Modal>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -57,6 +57,6 @@ const styles = StyleSheet.create({
     borderColor: "black",
     height: 40
   }
-});
+})
 
-export default DropDown;
+export default DropDown
