@@ -11,6 +11,7 @@ import MainScreen from "./screens/MainScreen"
 import QuoteDetail from "./screens/QuoteDetail"
 import Favorites from "./screens/Favorites"
 import DropDownDemo from "./screens/DropDownDemoScreen"
+import AddQuoteForm from "./screens/AddQuoteForm"
 
 const AppNavigator = createStackNavigator({
   MainScreen: {
@@ -26,6 +27,15 @@ const AppNavigator = createStackNavigator({
     screen: QuoteDetail,
     navigationOptions: {
       headerTitle: "Details",
+      headerStyle: {
+        backgroundColor: "#f5f5f5"
+      }
+    }
+  },
+  AddQuoteForm: {
+    screen: AddQuoteForm,
+    navigationOptions: {
+      headerTitle: "Add Quote",
       headerStyle: {
         backgroundColor: "#f5f5f5"
       }

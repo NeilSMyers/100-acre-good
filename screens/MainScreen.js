@@ -35,9 +35,7 @@ App.navigationOptions = navData => {
     headerRight: (
       <View style={styles.plus}>
         <TouchableOpacity
-          onPress={() =>
-            Alert.alert("WOOHOOO", "You did it!", [{ text: "Yes I Did" }])
-          }
+          onPress={() => navData.navigation.navigate("AddQuoteForm")}
         >
           <Ionicons name="ios-add" color="black" size={34} />
         </TouchableOpacity>

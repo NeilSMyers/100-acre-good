@@ -1,10 +1,10 @@
-class Quote {
+export class Quote {
   constructor(id, quote, author, image, favorite) {
-    this.id = id;
-    this.quote = quote;
-    this.author = author;
-    this.image = image;
-    this.favorite = favorite;
+    this.id = id
+    this.quote = quote
+    this.author = author
+    this.image = image
+    this.favorite = favorite
   }
 }
 
@@ -107,4 +107,4 @@ export default [
     require("./assets/winnie/winniePooh.png"),
     false
   )
-];
+]
