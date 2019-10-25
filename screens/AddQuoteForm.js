@@ -1,21 +1,26 @@
 import React from "react"
-import { View, Text, StyleSheet, TextInput, Button, Switch } from "react-native"
-import mockData, { Quote } from "../mockData"
+import { View, Text, StyleSheet, TextInput, Button } from "react-native"
+import { baseEndpoint } from "../secrets"
+import images, { QuoteModel } from "../models"
 
 const AddQuoteForm = props => {
   const [quote, setQuote] = React.useState("")
   const [author, setAuthor] = React.useState("")
-  const [favorite, setFavorite] = React.useState(false)
 
   const handleSubmit = () => {
-    const newQuote = new Quote(
-      mockData.length + 1,
-      quote,
-      author,
-      require("../assets/winnie/piglet.jpeg"),
-      favorite
-    )
-    mockData.push(newQuote)
+    fetch(`${baseEndpoint}/quotes.json`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        quote,
+        author,
+        favorite: false
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        new QuoteModel(data.name, quote, author, images[author], false)
+      })
     props.navigation.navigate("MainScreen")
   }
 
@@ -33,9 +38,6 @@ const AddQuoteForm = props => {
         value={author}
         onChangeText={text => setAuthor(text)}
       />
-
-      <Text>Favorite?</Text>
-      <Switch value={favorite} onValueChange={update => setFavorite(update)} />
 
       <Button title="Submit" onPress={handleSubmit} />
     </View>

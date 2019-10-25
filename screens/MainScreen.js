@@ -1,18 +1,46 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { StyleSheet, Alert, View, FlatList } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
+import { baseEndpoint } from "../secrets"
 import Quote from "../components/Quote"
-
-import data from "../mockData"
+import images, { QuoteModel } from "../models"
 import { TouchableOpacity } from "react-native-gesture-handler"
 
 const App = props => {
+  const [quotes, setQuotes] = useState([])
+
+  useEffect(() => {
+    loadQuotes()
+  }, [])
+
+  const loadQuotes = () => {
+    fetch(`${baseEndpoint}/quotes.json`)
+      .then(res => res.json())
+      .then(data => {
+        const quoteArray = []
+        for (const id in data) {
+          quoteArray.push(
+            new QuoteModel(
+              id,
+              data[id].quote,
+              data[id].author,
+              images[data[id].author],
+              data[id].favorite
+            )
+          )
+        }
+        setQuotes(quoteArray)
+      })
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
+        onRefresh={loadQuotes}
+        refreshing={false}
         keyExtractor={item => String(item.id)}
-        data={data}
+        data={quotes}
         style={{ width: "100%" }}
         renderItem={({ item }) => {
           return (
@@ -46,6 +74,7 @@ App.navigationOptions = navData => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center"

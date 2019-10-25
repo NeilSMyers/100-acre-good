@@ -3,7 +3,7 @@ import { View, StyleSheet, FlatList } from "react-native"
 
 import Quote from "../components/Quote"
 
-import data from "../mockData"
+import data from "../models"
 
 const Favorites = props => {
   const renderFavorites = ({ item }) => {
