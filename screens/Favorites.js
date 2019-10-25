@@ -1,11 +1,38 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { View, StyleSheet, FlatList } from "react-native"
+
+import { baseEndpoint } from "../secrets"
+import images, { QuoteModel } from "../models"
 
 import Quote from "../components/Quote"
 
-import data from "../models"
-
 const Favorites = props => {
+  const [quotes, setQuotes] = useState([])
+
+  useEffect(() => {
+    loadQuotes()
+  }, [])
+
+  const loadQuotes = () => {
+    fetch(`${baseEndpoint}/quotes.json`)
+      .then(res => res.json())
+      .then(data => {
+        const quoteArray = []
+        for (const id in data) {
+          quoteArray.push(
+            new QuoteModel(
+              id,
+              data[id].quote,
+              data[id].author,
+              images[data[id].author],
+              data[id].favorite
+            )
+          )
+        }
+        setQuotes(quoteArray)
+      })
+  }
+
   const renderFavorites = ({ item }) => {
     return (
       <Quote
@@ -21,7 +48,7 @@ const Favorites = props => {
     <View style={styles.container}>
       <FlatList
         keyExtractor={item => String(item.id)}
-        data={data.filter(item => item.favorite)}
+        data={quotes.filter(item => item.favorite)}
         renderItem={renderFavorites}
       />
     </View>
