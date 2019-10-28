@@ -1,6 +1,7 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React from "react"
+import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native"
+import { Ionicons } from "@expo/vector-icons"
+import Swipeout from "react-native-swipeout"
 
 const Quote = props => {
   return (
@@ -15,24 +16,35 @@ const Quote = props => {
         })
       }
     >
-      <View style={styles.container}>
-        <View style={styles.imageWrapper}>
-          <Image style={styles.image} source={props.image} />
+      <Swipeout
+        right={[
+          {
+            text: <Ionicons name="ios-trash" size={33} color="white" />,
+            underlayColor: "red",
+            type: "delete",
+            onPress: () => props.handleDelete(props.id)
+          }
+        ]}
+      >
+        <View style={styles.container}>
+          <View style={styles.imageWrapper}>
+            <Image style={styles.image} source={props.image} />
+          </View>
+          <View style={styles.quoteWrapper}>
+            <Text style={styles.author}>{props.author}</Text>
+            <Text style={styles.quote}>{props.quote}</Text>
+          </View>
+          <Ionicons
+            style={styles.icon}
+            name="ios-arrow-forward"
+            size={23}
+            color="#7d7d7d"
+          />
         </View>
-        <View style={styles.quoteWrapper}>
-          <Text style={styles.author}>{props.author}</Text>
-          <Text style={styles.quote}>{props.quote}</Text>
-        </View>
-        <Ionicons
-          style={styles.icon}
-          name="ios-arrow-forward"
-          size={23}
-          color="#7d7d7d"
-        />
-      </View>
+      </Swipeout>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -41,7 +53,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#e1e1e1",
     alignItems: "center",
     justifyContent: "space-between",
-    padding: 12
+    padding: 12,
+    backgroundColor: "white"
   },
   author: {
     fontSize: 16,
@@ -66,6 +79,6 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%"
   }
-});
+})
 
-export default Quote;
+export default Quote

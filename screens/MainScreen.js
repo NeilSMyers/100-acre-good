@@ -34,6 +34,12 @@ const App = props => {
       })
   }
 
+  const handleDelete = id => {
+    fetch(`${baseEndpoint}/quotes/${id}.json`, {
+      method: "DELETE"
+    }).then(setQuotes(quotes.filter(quote => quote.id !== id)))
+  }
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -45,10 +51,12 @@ const App = props => {
         renderItem={({ item }) => {
           return (
             <Quote
+              id={item.id}
               quote={item.quote}
               author={item.author}
               image={item.image}
               navigation={props.navigation}
+              handleDelete={handleDelete}
             />
           )
         }}
