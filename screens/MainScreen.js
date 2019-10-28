@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { StyleSheet, Alert, View, FlatList } from "react-native"
+import { StyleSheet, View, FlatList } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 
 import { baseEndpoint } from "../secrets"

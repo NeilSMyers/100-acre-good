@@ -16,24 +16,6 @@ export default {
 }
 
 //   new Quote(
-//     4,
-//     "You're braver than you believe, stronger than you seem, and smarter than you think.",
-//     "Christopher Robin",
-//     false
-//   ),
-//   new Quote(
-//     5,
-//     "People say nothing is impossible, but I do nothing every day.",
-//     "Winnie the Pooh",
-//     true
-//   ),
-//   new Quote(
-//     6,
-//     "A little consideration, a little thought for others, makes all the difference.",
-//     "Eeyore",
-//     false
-//   ),
-//   new Quote(
 //     7,
 //     "Forever isn't long at all, Christopher, when I'm with you.",
 //     "Winnie the Pooh",

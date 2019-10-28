@@ -1,11 +1,19 @@
 import React from "react"
-import { View, Text, StyleSheet, TextInput, Button } from "react-native"
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  Button,
+  Picker,
+  ScrollView
+} from "react-native"
 import { baseEndpoint } from "../secrets"
 import images, { QuoteModel } from "../models"
 
 const AddQuoteForm = props => {
   const [quote, setQuote] = React.useState("")
-  const [author, setAuthor] = React.useState("")
+  const [author, setAuthor] = React.useState("Christopher Robin")
 
   const handleSubmit = () => {
     fetch(`${baseEndpoint}/quotes.json`, {
@@ -25,22 +33,30 @@ const AddQuoteForm = props => {
   }
 
   return (
-    <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Quote"
-        value={quote}
-        onChangeText={text => setQuote(text)}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Author"
-        value={author}
-        onChangeText={text => setAuthor(text)}
-      />
+    <ScrollView>
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder="Quote"
+          value={quote}
+          onChangeText={text => setQuote(text)}
+          multiline={true}
+        />
 
-      <Button title="Submit" onPress={handleSubmit} />
-    </View>
+        <Picker
+          selectedValue={author}
+          style={{ width: "90%" }}
+          onValueChange={itemValue => setAuthor(itemValue)}
+        >
+          <Picker.Item label="Christopher Robin" value="Christopher Robin" />
+          <Picker.Item label="Winnie The Pooh" value="Winnie The Pooh" />
+          <Picker.Item label="Piglet" value="Piglet" />
+          <Picker.Item label="Eeyore" value="Eeyore" />
+        </Picker>
+
+        <Button title="Submit" onPress={handleSubmit} />
+      </View>
+    </ScrollView>
   )
 }
 
@@ -50,12 +66,13 @@ const styles = StyleSheet.create({
     padding: 20
   },
   input: {
-    borderWidth: 1,
-    borderColor: "gray",
+    borderBottomWidth: 2,
+    borderBottomColor: "gray",
     width: "90%",
-    padding: 10,
+    paddingBottom: 10,
     borderRadius: 3,
-    margin: 10
+    margin: 10,
+    fontSize: 20
   }
 })
 
