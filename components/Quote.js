@@ -5,26 +5,27 @@ import Swipeout from "react-native-swipeout"
 
 const Quote = props => {
   return (
-    <TouchableOpacity
-      onPress={() =>
-        props.navigation.navigate({
-          routeName: "QuoteDetail",
-          params: {
-            quote: props.quote,
-            author: props.author
-          }
-        })
-      }
+    <Swipeout
+      style={{ backgroundColor: "white" }}
+      right={[
+        {
+          text: <Ionicons name="ios-trash" size={33} color="white" />,
+          underlayColor: "red",
+          type: "delete",
+          onPress: () => props.handleDelete(props.id)
+        }
+      ]}
     >
-      <Swipeout
-        right={[
-          {
-            text: <Ionicons name="ios-trash" size={33} color="white" />,
-            underlayColor: "red",
-            type: "delete",
-            onPress: () => props.handleDelete(props.id)
-          }
-        ]}
+      <TouchableOpacity
+        onPress={() =>
+          props.navigation.navigate({
+            routeName: "QuoteDetail",
+            params: {
+              quote: props.quote,
+              author: props.author
+            }
+          })
+        }
       >
         <View style={styles.container}>
           <View style={styles.imageWrapper}>
@@ -41,8 +42,8 @@ const Quote = props => {
             color="#7d7d7d"
           />
         </View>
-      </Swipeout>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </Swipeout>
   )
 }
 
