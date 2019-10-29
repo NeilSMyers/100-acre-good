@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import {
   View,
   Text,
@@ -12,19 +12,38 @@ import { baseEndpoint } from "../secrets"
 import images, { QuoteModel } from "../models"
 
 const AddQuoteForm = props => {
-  const [quote, setQuote] = React.useState("")
-  const [author, setAuthor] = React.useState("Christopher Robin")
+  const [quote, setQuote] = useState(editMode ? editQuote : "")
+  const [author, setAuthor] = useState(
+    editMode ? editAuthor : "Christopher Robin"
+  )
+
+  const editMode = props.navigation.getParam("editMode")
+  const editId = props.navigation.getParam("id")
+  const editQuote = props.navigation.getParam("quote")
+  const editAuthor = props.navigation.getParam("author")
+
+  useEffect(() => {
+    if (editMode) {
+      setAuthor(editAuthor)
+      setQuote(editQuote)
+    }
+  }, [])
 
   const handleSubmit = () => {
-    fetch(`${baseEndpoint}/quotes.json`, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        quote,
-        author,
-        favorite: false
-      })
-    })
+    fetch(
+      editMode
+        ? `${baseEndpoint}/quotes/${editId}.json`
+        : `${baseEndpoint}/quotes.json`,
+      {
+        method: editMode ? "PUT" : "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          quote,
+          author,
+          favorite: false
+        })
+      }
+    )
       .then(res => res.json())
       .then(data => {
         new QuoteModel(data.name, quote, author, images[author], false)

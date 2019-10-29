@@ -9,6 +9,21 @@ const Quote = props => {
       style={{ backgroundColor: "white" }}
       right={[
         {
+          text: <Ionicons name="ios-create" size={30} color="white" />,
+          underlayColor: "#51a0d5",
+          backgroundColor: "#78c5ef",
+          onPress: () =>
+            props.navigation.navigate({
+              routeName: "AddQuoteForm",
+              params: {
+                editMode: true,
+                id: props.id,
+                quote: props.quote,
+                author: props.author
+              }
+            })
+        },
+        {
           text: <Ionicons name="ios-trash" size={33} color="white" />,
           underlayColor: "red",
           type: "delete",
@@ -52,7 +67,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: "#e1e1e1",
-    alignItems: "center",
     justifyContent: "space-between",
     padding: 12,
     backgroundColor: "white"

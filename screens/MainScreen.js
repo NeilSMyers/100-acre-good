@@ -9,6 +9,7 @@ import { TouchableOpacity } from "react-native-gesture-handler"
 
 const App = props => {
   const [quotes, setQuotes] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     loadQuotes()
@@ -31,6 +32,7 @@ const App = props => {
           )
         }
         setQuotes(quoteArray)
+        setLoading(false)
       })
   }
 
@@ -44,7 +46,7 @@ const App = props => {
     <View style={styles.container}>
       <FlatList
         onRefresh={loadQuotes}
-        refreshing={false}
+        refreshing={loading}
         keyExtractor={item => String(item.id)}
         data={quotes}
         style={{ width: "100%" }}
